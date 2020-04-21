@@ -2,13 +2,16 @@ package org.csu.fastfish.controller;
 
 import org.csu.fastfish.domain.Account;
 import org.csu.fastfish.service.AccountService;
+import org.csu.fastfish.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,19 +22,19 @@ public class AccountController {
     private AccountService accountService;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private HttpServletRequest request;
 
     private Account account = new Account();
     private boolean authenticated;
 
-    @GetMapping("/user/allusers")
-    public List<Account> findAllUsers(){
-        return accountService.findAllUsers();
+    public Account getAccount() {
+        return this.account;
     }
-
-    @GetMapping("/user/name")
-    public Account findUserByName(String user_name){
-        return accountService.findUserByName(user_name);
+    public void setAccount(Account account) {
+         this.account = account;
     }
 
     @PostMapping("/account/signon")
@@ -69,8 +72,8 @@ public class AccountController {
     }
 
     @GetMapping("/account/money")
-    public Map<String, Integer> accountMoney(){
-        Map<String,Integer> result = new HashMap<>();
+    public Map<String, Float> accountMoney(){
+        Map<String,Float> result = new HashMap<>();
         result.put("money", account.getMoney());
         return result;
     }

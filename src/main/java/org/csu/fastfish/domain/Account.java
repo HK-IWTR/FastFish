@@ -4,14 +4,19 @@ import lombok.Data;
 
 @Data
 public class Account {
+    private int id;
     private String username;
     private String password;
     private String phonenumber;
     private String email;
     private String address;
     private String photo;
-    private int money;
+    private float money;
     private int point;
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -25,7 +30,7 @@ public class Account {
         return photo;
     }
 
-    public int getMoney() {
+    public float getMoney() {
         return money;
     }
 
@@ -61,7 +66,7 @@ public class Account {
         this.photo = photo;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(float money) {
         this.money = money;
     }
 

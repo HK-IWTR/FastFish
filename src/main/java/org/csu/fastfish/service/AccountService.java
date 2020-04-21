@@ -18,8 +18,8 @@ public class AccountService {
         return accountMapper.findAllUsers();
     }
 
-    public Account findUserByName(String user_name){
-        return accountMapper.findUserByName(user_name);
+    public Account findUserByName(String username){
+        return accountMapper.findUserByName(username);
     }
 
     public Account getAccount(String username){return accountMapper.getAccountByUsername(username);}
@@ -36,5 +36,9 @@ public class AccountService {
     @Transactional
     public void updateProfile(Account account) {
         accountMapper.updateProfile(account);
+    }
+
+    public void updateMoney(float money, String username){
+        accountMapper.updateMoney(money, username);
     }
 }

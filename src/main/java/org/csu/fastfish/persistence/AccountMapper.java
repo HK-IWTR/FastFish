@@ -31,10 +31,12 @@ public interface AccountMapper {
             "values (#{username}, #{password}, #{phonenumber})")
     void insertAccount(Account account);
 
-    @Update("update account set username = #{username}, phonenumber = #{phonenumber}, address = #{address}, email = #{email} " )
+    @Update("update account set username = #{username}, phonenumber = #{phonenumber}, address = #{address}, email = #{email} where username = #{username}" )
     void updateProfile(Account account);
 
-    @Update( "UPDATE SIGNON SET PASSWORD = #{password}  WHERE USERNAME = #{username}")
-    void updateSignon(Account account);
+    @Update("update account set money = #{money} where username = #{username}")
+    void updateMoney(float money, String username);
+
+
 
 }
